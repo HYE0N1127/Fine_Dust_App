@@ -1,19 +1,17 @@
 package com.example.fine_dust_app.data.retrofit_builder
 
+import com.google.gson.GsonBuilder
+import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-object RetrofitBuilder {
-    var api : fineDustAPI
+class RetrofitBuilder {
 
-    init {
-        val retrofit = Retrofit.Builder()
-            .baseUrl("http://apis.data.go.kr/B552584/ArpltnStatsSvc")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
+    val retrofit = Retrofit.Builder()
+        .baseUrl("https://api.github.com/")
+        .client(OkHttpClient())
+        .addConverterFactory(GsonConverterFactory.create(GsonBuilder().setLenient().create()))
+        .build()
 
-
-        api = retrofit.create(fineDustAPI::class.java)
-    }
-
+    val githubApi = retrofit.create(GithubAPI::class.java)
 }
