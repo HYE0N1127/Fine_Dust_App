@@ -3,6 +3,7 @@ package com.example.fine_dust_app
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.TextView
 import com.example.fine_dust_app.data.model.GithubInfo
 import com.example.fine_dust_app.data.retrofit_builder.RetrofitBuilder
 import retrofit2.Call
@@ -10,10 +11,13 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
+    lateinit var tvBio : TextView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        tvBio = findViewById(R.id.tvBio)
 
         val call = RetrofitBuilder().githubApi.getGithubInfo()
 
@@ -26,6 +30,7 @@ class MainActivity : AppCompatActivity() {
                     "${userInfo?.bio} ${userInfo?.login} ${userInfo?.followers} ${userInfo?.following} ${userInfo?.html_url} ${userInfo?.name}" +
                             "${userInfo?.company} ${userInfo?.location} ${userInfo?.blog}"
                 )
+                tvBio.text = userInfo?.bio.toString()
             }
 
             override fun onFailure(call: Call<GithubInfo>, t: Throwable) {
