@@ -12,12 +12,14 @@ import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
     lateinit var tvBio : TextView
+    lateinit var ivProfile : TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         tvBio = findViewById(R.id.tvBio)
+        ivProfile = findViewById(R.id.ivProfile)
 
         val call = RetrofitBuilder().githubApi.getGithubInfo()
 
@@ -31,6 +33,8 @@ class MainActivity : AppCompatActivity() {
                             "${userInfo?.company} ${userInfo?.location} ${userInfo?.blog}"
                 )
                 tvBio.text = userInfo?.bio.toString()
+                ivProfile. = userInfo?.avatar_url
+
             }
 
             override fun onFailure(call: Call<GithubInfo>, t: Throwable) {
