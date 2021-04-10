@@ -16,15 +16,13 @@ import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
     lateinit var tvBio: TextView
-    lateinit var ivProfile: TextView
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         tvBio = findViewById(R.id.tvBio)
-        val imageView: ImageView = findViewById(R.id.ivProfile)
+        val profileImage: ImageView = findViewById(R.id.ivProfile)
 
         val call = RetrofitBuilder().githubApi.getGithubInfo()
 
@@ -46,10 +44,10 @@ class MainActivity : AppCompatActivity() {
 
             fun getImageURL(imageURL: String) {
 
-                imageURL =
+                Glide.with(Activity())
+                    .load(imageURL)
+                    .into(profileImage)
 
-                Glide.with(Activity()).
-                load(imageURL)
             }
         })
     }

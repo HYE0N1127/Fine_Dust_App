@@ -8,8 +8,8 @@
     tools:context=".MainActivity">
 
     <ImageView
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:id="@+id/ivProfile"/>
 
     <TextView
@@ -21,6 +21,6 @@
         android:fontFamily="@font/regular"
         android:id="@+id/tvBio"
         android:textSize="20sp"
-        tools:text="TestText"/>
+        tools:text="언젠간 내가 원하던 것들이 이루어져 있길 바래🙏"/>
 
 </LinearLayout>
