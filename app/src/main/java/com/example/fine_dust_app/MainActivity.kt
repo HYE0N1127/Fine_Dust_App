@@ -36,6 +36,9 @@ class MainActivity : AppCompatActivity() {
                             "${userInfo?.company} ${userInfo?.location} ${userInfo?.blog} ${userInfo?.avatar_url}"
                 )
                 tvBio.text = userInfo?.bio.toString()
+
+                val imageURL = userInfo?.avatar_url.toString()
+                getImageURL(imageURL)
             }
 
             override fun onFailure(call: Call<GithubInfo>, t: Throwable) {
@@ -44,10 +47,9 @@ class MainActivity : AppCompatActivity() {
 
             fun getImageURL(imageURL: String) {
 
-                Glide.with(Activity())
+                Glide.with(applicationContext)
                     .load(imageURL)
                     .into(profileImage)
-
             }
         })
     }

@@ -7,20 +7,23 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:id="@+id/ivProfile"/>
+        android:id="@+id/ivProfile"
+        tools:src="@drawable/ic_launcher_background"/>
 
     <TextView
-        android:layout_width="wrap_content"
-        android:padding="3dp"
+        android:id="@+id/tvBio"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:background="@drawable/border"
         android:fontFamily="@font/regular"
-        android:id="@+id/tvBio"
+        android:padding="3dp"
+        android:textAlignment="center"
         android:textSize="20sp"
-        tools:text="언젠간 내가 원하던 것들이 이루어져 있길 바래🙏"/>
+        tools:ignore="RtlCompat"
+        tools:text="언젠간 내가 원하던 것들이 이루어져 있길 바래🙏" />
 
 </LinearLayout>
