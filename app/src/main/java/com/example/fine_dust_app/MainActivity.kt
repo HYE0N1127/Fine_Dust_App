@@ -10,18 +10,23 @@ import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.example.fine_dust_app.data.model.GithubInfo
 import com.example.fine_dust_app.data.retrofit_builder.RetrofitBuilder
+import org.w3c.dom.Text
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
     lateinit var tvBio: TextView
+    lateinit var tvUserName: TextView
+    lateinit var tvUserID: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         tvBio = findViewById(R.id.tvBio)
+        tvUserName = findViewById(R.id.tvUserName)
+        tvUserID = findViewById(R.id.tvUserID)
         val profileImage: ImageView = findViewById(R.id.ivProfile)
 
         val call = RetrofitBuilder().githubApi.getGithubInfo()
@@ -36,6 +41,8 @@ class MainActivity : AppCompatActivity() {
                             "${userInfo?.company} ${userInfo?.location} ${userInfo?.blog} ${userInfo?.avatar_url}"
                 )
                 tvBio.text = userInfo?.bio.toString()
+                tvUserName.text = userInfo?.name.toString()
+                tvUserID.text = userInfo?.login.toString()
 
                 val imageURL = userInfo?.avatar_url.toString()
                 getImageURL(imageURL)
