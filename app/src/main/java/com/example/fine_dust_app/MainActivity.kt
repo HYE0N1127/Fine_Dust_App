@@ -1,5 +1,6 @@
 package com.example.fine_dust_app
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.media.Image
 import androidx.appcompat.app.AppCompatActivity
@@ -19,6 +20,8 @@ class MainActivity : AppCompatActivity() {
     lateinit var tvBio: TextView
     lateinit var tvUserName: TextView
     lateinit var tvUserID: TextView
+    lateinit var tvFollower: TextView
+    lateinit var tvFollowing: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,11 +30,14 @@ class MainActivity : AppCompatActivity() {
         tvBio = findViewById(R.id.tvBio)
         tvUserName = findViewById(R.id.tvUserName)
         tvUserID = findViewById(R.id.tvUserID)
+        tvFollower = findViewById(R.id.tvFollower)
+        tvFollowing = findViewById(R.id.tvFollowing)
         val profileImage: ImageView = findViewById(R.id.ivProfile)
 
         val call = RetrofitBuilder().githubApi.getGithubInfo()
 
         call.enqueue(object : Callback<GithubInfo> {
+            @SuppressLint("SetTextI18n")
             override fun onResponse(call: Call<GithubInfo>, response: Response<GithubInfo>) {
                 val userInfo = response.body()
 
@@ -43,6 +49,8 @@ class MainActivity : AppCompatActivity() {
                 tvBio.text = userInfo?.bio.toString()
                 tvUserName.text = userInfo?.name.toString()
                 tvUserID.text = userInfo?.login.toString()
+                tvFollower.text = "Follower : " + userInfo?.followers.toString()
+                tvFollowing.text = "Following : " + userInfo?.following.toString()
 
                 val imageURL = userInfo?.avatar_url.toString()
                 getImageURL(imageURL)
