@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
         val call = RetrofitBuilder().githubApi.getGithubInfo()
 
         call.enqueue(object : Callback<GithubInfo> {
-            @SuppressLint("SetTextI18n")
+
             override fun onResponse(call: Call<GithubInfo>, response: Response<GithubInfo>) {
                 val userInfo = response.body()
 
